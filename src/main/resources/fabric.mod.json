@@ -5,25 +5,23 @@
 	"name": "Centered Inventory",
 	"description": "Centers the player inventory screen and recipe book layout for Minecraft 26.1.X",
 	"authors": [
-		"Me!"
+		"jesusFreak1"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://fabricmc.net/"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/centered_inventory/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"com.centeredinventory.CenteredInventoryMod"
 		],
 		"client": [
-			"com.example.client.ExampleModClient"
+			"com.centeredinventory.client.CenteredInventoryClient"
 		]
 	},
 	"mixins": [
-		"centered_inventory.mixins.json",
 		{
 			"config": "centered_inventory.client.mixins.json",
 			"environment": "client"

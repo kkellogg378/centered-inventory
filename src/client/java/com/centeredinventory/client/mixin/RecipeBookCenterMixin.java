@@ -1,4 +1,4 @@
-package com.example.client.mixin;
+package com.centeredinventory.client.mixin;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -51,6 +51,16 @@ public class RecipeBookCenterMixin {
         if (!visible || this.widthTooNarrow) return;
         this.xOffset = 86 + (RECIPE_BOOK_WIDTH + 1) / 2 - 12;
         applyWidgetOffset((RecipeBookComponent)(Object)this, (RECIPE_BOOK_WIDTH + 1) / 2 - 12);
+
+        // System.out.println("[CenteredInventory] RecipeBookComponent methods:");
+        // for (java.lang.reflect.Method m : net.minecraft.client.gui.screens.inventory.AbstractRecipeBookScreen.class.getDeclaredMethods()) {
+        //     if (m.getName().equals("hasClickedOutside")) {
+        //         System.out.println("[CenteredInventory] AbstractRecipeBookScreen.hasClickedOutside return: " + m.getReturnType().getName());
+        //         for (Class<?> p : m.getParameterTypes()) {
+        //             System.out.println("[CenteredInventory] AbstractRecipeBookScreen.hasClickedOutside param: " + p.getName());
+        //         }
+        //     }
+        // }
     }
 
     private void applyWidgetOffset(RecipeBookComponent self, int delta) {
