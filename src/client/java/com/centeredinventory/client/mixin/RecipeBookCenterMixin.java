@@ -9,6 +9,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.centeredinventory.CenteredInventoryConfig;
+
 import java.lang.reflect.Field;
 
 import java.util.List;
@@ -31,6 +33,8 @@ public class RecipeBookCenterMixin {
     // Center the inventory screen when the recipe book is visible
     @Inject(method = "updateScreenPosition(II)I", at = @At("RETURN"), cancellable = true)
     private void centerInventoryScreen(int width, int imageWidth, CallbackInfoReturnable<Integer> cir) {
+        if (!CenteredInventoryConfig.get().enabled) return;
+        
         if (this.isVisible() && !this.widthTooNarrow) {
             int centeredLeft = (width - RECIPE_BOOK_WIDTH + 1) / 2;
             cir.setReturnValue(centeredLeft);
@@ -40,6 +44,8 @@ public class RecipeBookCenterMixin {
     // Reposition the recipe book when inventory is opened
     @Inject(method = "init", at = @At("TAIL"))
     private void repositionRecipeBook(int width, int height, Minecraft minecraft, boolean widthTooNarrow, CallbackInfo ci) {
+        if (!CenteredInventoryConfig.get().enabled) return;
+        
         if (!this.isVisible() || widthTooNarrow) return;
         this.xOffset = this.xOffset + (RECIPE_BOOK_WIDTH + 1) / 2 - 12;
         applyWidgetOffset((RecipeBookComponent)(Object)this, (RECIPE_BOOK_WIDTH + 1) / 2 - 12);
@@ -48,6 +54,8 @@ public class RecipeBookCenterMixin {
     // Reposition the recipe book when toggling recipe book visibility
     @Inject(method = "setVisible(Z)V", at = @At("TAIL"))
     private void onSetVisible(boolean visible, CallbackInfo ci) {
+        if (!CenteredInventoryConfig.get().enabled) return;
+        
         if (!visible || this.widthTooNarrow) return;
         this.xOffset = 86 + (RECIPE_BOOK_WIDTH + 1) / 2 - 12;
         applyWidgetOffset((RecipeBookComponent)(Object)this, (RECIPE_BOOK_WIDTH + 1) / 2 - 12);
@@ -64,6 +72,8 @@ public class RecipeBookCenterMixin {
     }
 
     private void applyWidgetOffset(RecipeBookComponent self, int delta) {
+        if (!CenteredInventoryConfig.get().enabled) return;
+        
         try {
             Field tabButtonsField = RecipeBookComponent.class.getDeclaredField("tabButtons");
             tabButtonsField.setAccessible(true);
@@ -118,6 +128,8 @@ public class RecipeBookCenterMixin {
     // Fix the recipe book closing when pressing ESC
     @Inject(method = "keyPressed(Lnet/minecraft/client/input/KeyEvent;)Z", at = @At("HEAD"), cancellable = true)
     private void fixKeyPressed(net.minecraft.client.input.KeyEvent event, CallbackInfoReturnable<Boolean> cir) {
+        if (!CenteredInventoryConfig.get().enabled) return;
+        
         if (event.key() == 256) { // GLFW_KEY_ESCAPE
             cir.setReturnValue(false);
             cir.cancel();
@@ -130,16 +142,22 @@ public class RecipeBookCenterMixin {
 
     @Inject(method = "mouseClicked(Lnet/minecraft/client/input/MouseButtonEvent;Z)Z", at = @At("HEAD"))
     private void beforeMouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean bl, CallbackInfoReturnable<Boolean> cir) {
+        if (!CenteredInventoryConfig.get().enabled) return;
+        
         isHandlingMouseClick = true;
     }
 
     @Inject(method = "mouseClicked(Lnet/minecraft/client/input/MouseButtonEvent;Z)Z", at = @At("RETURN"))
     private void afterMouseClicked(net.minecraft.client.input.MouseButtonEvent event, boolean bl, CallbackInfoReturnable<Boolean> cir) {
+        if (!CenteredInventoryConfig.get().enabled) return;
+        
         isHandlingMouseClick = false;
     }
 
     @Inject(method = "setVisible(Z)V", at = @At("HEAD"), cancellable = true)
     private void guardSetVisible(boolean visible, CallbackInfo ci) {
+        if (!CenteredInventoryConfig.get().enabled) return;
+        
         if (!visible && isHandlingMouseClick) {
             ci.cancel();
         }

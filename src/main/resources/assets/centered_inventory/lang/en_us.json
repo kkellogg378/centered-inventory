@@ -1,0 +1,6 @@
+{
+    "config.centered_inventory.title": "Centered Inventory Settings",
+    "config.centered_inventory.category.general": "General",
+    "config.centered_inventory.enabled": "Enable Centered Inventory",
+    "config.centered_inventory.enabled.tooltip": "Centers the inventory and recipe book when the recipe book is open."
+}

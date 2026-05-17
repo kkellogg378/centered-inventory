@@ -1,36 +1,43 @@
 {
-	"schemaVersion": 1,
-	"id": "centered_inventory",
-	"version": "${version}",
-	"name": "Centered Inventory",
-	"description": "Centers the player inventory screen and recipe book layout for Minecraft 26.1.X",
-	"authors": [
-		"jesusFreak1"
-	],
-	"contact": {
-		"homepage": "https://modrinth.com/mod/centered-inventory"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/centered_inventory/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.centeredinventory.CenteredInventoryMod"
-		],
-		"client": [
-			"com.centeredinventory.client.CenteredInventoryClient"
-		]
-	},
-	"mixins": [
-		{
-			"config": "centered_inventory.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.19.2",
-		"minecraft": "~26.1",
-		"java": ">=25",
-		"fabric-api": "*"
-	}
+    "schemaVersion": 1,
+    "id": "centered_inventory",
+    "version": "${version}",
+    "name": "Centered Inventory",
+    "description": "Centers the player inventory screen and recipe book layout for Minecraft 26.1.X",
+    "authors": [
+        "jesusFreak1"
+    ],
+    "contact": {
+        "homepage": "https://modrinth.com/mod/centered-inventory"
+    },
+    "license": "CC0-1.0",
+    "icon": "assets/centered_inventory/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.centeredinventory.CenteredInventoryMod"
+        ],
+        "client": [
+            "com.centeredinventory.client.CenteredInventoryClient"
+        ],
+        "modmenu": [
+            "com.centeredinventory.client.ModMenuIntegration"
+        ]
+    },
+    "mixins": [
+        {
+            "config": "centered_inventory.client.mixins.json",
+            "environment": "client"
+        }
+    ],
+    "depends": {
+        "fabricloader": ">=0.19.2",
+        "minecraft": "~26.1",
+        "java": ">=25",
+        "fabric-api": "*"
+    },
+    "suggests": {
+        "modmenu": "*",
+        "cloth-config": "*"
+    }
 }
