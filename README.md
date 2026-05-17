@@ -2,6 +2,9 @@
 
 A Fabric mod for Minecraft `26.1.X` that centers the player inventory screen when the recipe book is open
 
+## Compatible Mods
+[Cloth Config](https://modrinth.com/mod/cloth-config) - Not required, but allows enabling/disabling the mod via [Mod Menu](https://modrinth.com/mod/modmenu). Alternatively, just edit `config/centered_inventory.json`
+
 ## What it does
 
 - Centers the player inventory screen when the recipe book is visible.
