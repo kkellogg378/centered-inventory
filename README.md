@@ -11,6 +11,10 @@ A Fabric mod for Minecraft `26.1.X` that centers the player inventory screen whe
 - Preserves normal layout behavior when the recipe book is hidden or the window is too narrow.
 - Applies the adjustment on the client side via a Fabric mixin.
 
+## 1.21.11 Version?
+
+User 4Ply has made a very nice port of the mod for 1.21.11, check it out [here](https://github.com/4Ply/centered-inventory)!
+
 ## Build Instructions
 
 1. Open a terminal in the project root: `c:\repos\centered_inventory`
